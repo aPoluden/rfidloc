@@ -1,12 +1,13 @@
 package lt.vu.mif.rfidloc.device;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 import lombok.ToString;
 import lt.vu.mif.rfidloc.message.Message;
 import lt.vu.mif.rfidloc.message.Operation;
 import lt.vu.mif.rfidloc.network.Network;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 @ToString(callSuper = true)
 public class Tag extends Device {
@@ -25,7 +26,7 @@ public class Tag extends Device {
     }
     
     @Override
-    protected void init() {
+    protected void setup() {
         this.receiving.set(Boolean.FALSE);
     }
 
@@ -48,8 +49,6 @@ public class Tag extends Device {
     }
 
     @Override
-    protected void deinit() {
-        
-    }
+    protected void tearDown() { }
 
 }

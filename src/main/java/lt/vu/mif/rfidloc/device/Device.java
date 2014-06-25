@@ -1,12 +1,5 @@
 package lt.vu.mif.rfidloc.device;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Stream;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,19 +9,29 @@ import lt.vu.mif.rfidloc.listener.MessageListener;
 import lt.vu.mif.rfidloc.message.Message;
 import lt.vu.mif.rfidloc.network.Network;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Stream;
+
 @Log4j
 @ToString(exclude = { "messages", "service" })
 @EqualsAndHashCode(of = "id")
 public abstract class Device {
 
     private static final int SLEEP_AFTER_SEND_MS = 100;
-    private static int IDSEQ = 0;
+    private static int ID_SEQ = 0;
 
     @Getter
     private final Network net;
     
     @Getter
-    private final int id = ++IDSEQ;
+    private final int id = ++ID_SEQ;
     
     @Getter
     @Setter
@@ -66,7 +69,9 @@ public abstract class Device {
         if (running.get()) {
             boolean prev = this.receiving.getAndSet(Boolean.FALSE);
             this.net.send(this, m, strength);
-            listenTo(m, Boolean.FALSE);
+
+            listenSending(m);
+
             if (log.isDebugEnabled()) {
                 log.debug(String.format("%s %d sent: %s", this.getClass().getSimpleName(), id, m));
             }
@@ -79,13 +84,13 @@ public abstract class Device {
         }
     }
    
-    protected abstract void init();
-    protected abstract void deinit();
+    protected abstract void setup();
+    protected abstract void tearDown();
     protected abstract Runnable[] getTasks();
     
     public void start() {
         Runnable[] tasks = getTasks();
-        init();
+        setup();
         if (tasks.length > 0) {
             service = Executors.newFixedThreadPool(tasks.length);
             Stream.of(tasks).forEach(t -> service.submit(t));
@@ -103,7 +108,7 @@ public abstract class Device {
             service = null;
         }
         this.messages.clear();
-        deinit();
+        tearDown();
         if (log.isDebugEnabled()) {
             log.debug(String.format("Stopped: %s", this));
         }
@@ -132,21 +137,26 @@ public abstract class Device {
         } catch (InterruptedException ex) { }
     }
 
-    private final Map<MessageListener, Boolean> listeners = new ConcurrentHashMap<>();
+    private final Set<MessageListener> listeners = Collections.synchronizedSet(new HashSet<>());
 
-    public void add(MessageListener listener, boolean isReceive) {
-        listeners.put(listener, isReceive);
+    public void add(MessageListener listener) {
+        listeners.add(listener);
     }
 
     public void remove(MessageListener listener) {
         listeners.remove(listener);
     }
 
-    protected void listenTo(Message m, boolean isReceive) {
-        listeners.entrySet().parallelStream()
-                .filter(e -> e.getValue() == isReceive)
-                .map(e -> e.getKey())
-                .forEach(l -> l.process(m));
+    public void clearMessageListeners() {
+        listeners.clear();
+    }
+
+    protected void listenReceiving(Message m) {
+        listeners.parallelStream().forEach(l -> l.process(m, Boolean.TRUE));
+    }
+
+    protected void listenSending(Message m) {
+        listeners.parallelStream().forEach(l -> l.process(m, Boolean.FALSE));
     }
 
 }

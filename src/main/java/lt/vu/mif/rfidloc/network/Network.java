@@ -1,7 +1,5 @@
 package lt.vu.mif.rfidloc.network;
 
-import java.util.HashSet;
-import java.util.Set;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +7,9 @@ import lombok.ToString;
 import lombok.extern.log4j.Log4j;
 import lt.vu.mif.rfidloc.device.Device;
 import lt.vu.mif.rfidloc.message.Message;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Log4j
 @RequiredArgsConstructor

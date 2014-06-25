@@ -8,4 +8,22 @@ public class TestBase {
         } catch (InterruptedException ex) { }
     }
 
+    protected class BooleanHolder {
+
+        private boolean value = Boolean.FALSE;
+
+        public void set() {
+            this.value = Boolean.TRUE;
+        }
+
+        public void reset() {
+            this.value = Boolean.FALSE;
+        }
+
+        public boolean get() {
+            return this.value;
+        }
+
+    }
+
 }

@@ -1,11 +1,11 @@
 package lt.vu.mif.rfidloc.device;
 
+import lt.vu.mif.rfidloc.message.Message;
+import lt.vu.mif.rfidloc.network.Network;
+
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import static lt.vu.mif.rfidloc.device.Device.wait;
-import lt.vu.mif.rfidloc.message.Message;
-import lt.vu.mif.rfidloc.network.Network;
 
 public abstract class Transceiver extends Device {
 
@@ -56,13 +56,13 @@ public abstract class Transceiver extends Device {
     }
     
     @Override
-    protected void init() {
+    protected void setup() {
         receiving.set(Boolean.TRUE);
         sending.clear();
     }
     
     @Override
-    protected void deinit() {
+    protected void tearDown() {
         sending.clear();
     }
     

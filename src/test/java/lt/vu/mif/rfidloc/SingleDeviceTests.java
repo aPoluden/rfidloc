@@ -5,12 +5,11 @@ import lt.vu.mif.rfidloc.device.Receiver;
 import lt.vu.mif.rfidloc.device.Tag;
 import lt.vu.mif.rfidloc.message.Operation;
 import lt.vu.mif.rfidloc.network.Network;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+
+import static org.junit.Assert.*;
 
 @RunWith(JUnit4.class)
 public class SingleDeviceTests extends TestBase {
@@ -23,13 +22,17 @@ public class SingleDeviceTests extends TestBase {
         Network net = new Network(1);
         
         Tag t = new Tag(net, 0, 0);
-        t.add(m -> {
+        t.add((m, receiving) -> {
 
-            assertEquals(Operation.TRACK, m.getOp());
-            assertEquals(t.getId(), m.getSource());
-            assertTrue(m.getStrength() >= 1 && m.getStrength() <= 3);
+            if (receiving) {
+                fail("Tag should not receive anything!");
+            } else {
+                assertEquals(Operation.TRACK, m.getOp());
+                assertEquals(t.getId(), m.getSource());
+                assertTrue(m.getStrength() >= 1 && m.getStrength() <= 3);
+            }
 
-        }, Boolean.FALSE);
+        });
         t.start();
 
         wait(5);
@@ -43,14 +46,18 @@ public class SingleDeviceTests extends TestBase {
         Network net = new Network(1);
 
         Controller c = new Controller(net, 0, 0);
-        c.add(m -> {
+        c.add((m, receiving) -> {
 
-            assertEquals(Operation.PATH, m.getOp());
-            assertEquals(c.getId(), m.getSource());
-            assertEquals(0, m.getStrength());
-            assertEquals(0, m.getTarget());
+            if (receiving) {
+                fail("Controller should not receive anything as there is nothing else in the network!");
+            } else {
+                assertEquals(Operation.PATH, m.getOp());
+                assertEquals(c.getId(), m.getSource());
+                assertEquals(0, m.getStrength());
+                assertEquals(0, m.getTarget());
+            }
 
-        }, Boolean.FALSE);
+        });
         c.start();
 
         wait(5);
@@ -64,11 +71,11 @@ public class SingleDeviceTests extends TestBase {
         Network net = new Network(1);
 
         Receiver r = new Receiver(net, 0, 0);
-        r.add(m -> {
+        r.add((m, receiving) -> {
 
-            fail("Receiver should not be send anything!");
+            fail("Receiver should not be sending nor receiving anything!");
 
-        }, Boolean.FALSE);
+        });
         r.start();
 
         wait(5);

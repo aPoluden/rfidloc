@@ -1,10 +1,11 @@
 package lt.vu.mif.rfidloc.device;
 
-import java.util.concurrent.atomic.AtomicInteger;
 import lombok.ToString;
 import lt.vu.mif.rfidloc.message.Message;
 import lt.vu.mif.rfidloc.message.Operation;
 import lt.vu.mif.rfidloc.network.Network;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 @ToString(callSuper = true)
 public class Receiver extends Transceiver {
@@ -24,21 +25,21 @@ public class Receiver extends Transceiver {
         switch (m.getOp()) {
             case TRACK:
                 if (pathCounter.get() > 0) {
-                    listenTo(m, true);
-                    m = m.clone();
-                    if (m.getTarget() == 0) {
-                        m.setRec(getId());
-                        m.setRecrf(m.getRf());
-                    } else if (m.getTarget() != getId()) {
+                    Message ms = m.clone();
+                    if (ms.getTarget() == 0) {
+                        ms.setRec(getId());
+                        ms.setRecrf(ms.getRf());
+                    } else if (ms.getTarget() != getId()) {
                         return;
                     }
-                    m.setTarget(pathTarget.get());
-                    sending.add(m);
+                    listenReceiving(m);
+                    ms.setTarget(pathTarget.get());
+                    sending.add(ms);
                 }
                 break;
             case PATH:
                 if (pathCounter.get() == 0 || pathLen.get() >= m.getStrength()) {
-                    listenTo(m, true);
+                    listenReceiving(m);
                     pathLen.set(m.getStrength());
                     pathTarget.set(m.getSource());
                     pathCounter.set(PATH_COUNT_DOWN);
