@@ -1,9 +1,10 @@
 package lt.vu.mif.rfidloc.device;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Stream;
 import lombok.EqualsAndHashCode;
@@ -11,6 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.log4j.Log4j;
+import lt.vu.mif.rfidloc.listener.MessageListener;
 import lt.vu.mif.rfidloc.message.Message;
 import lt.vu.mif.rfidloc.network.Network;
 
@@ -64,7 +66,7 @@ public abstract class Device {
         if (running.get()) {
             boolean prev = this.receiving.getAndSet(Boolean.FALSE);
             this.net.send(this, m, strength);
-
+            listenTo(m, Boolean.FALSE);
             if (log.isDebugEnabled()) {
                 log.debug(String.format("%s %d sent: %s", this.getClass().getSimpleName(), id, m));
             }
@@ -129,5 +131,22 @@ public abstract class Device {
             Thread.sleep(ms);
         } catch (InterruptedException ex) { }
     }
-    
+
+    private final Map<MessageListener, Boolean> listeners = new ConcurrentHashMap<>();
+
+    public void add(MessageListener listener, boolean isReceive) {
+        listeners.put(listener, isReceive);
+    }
+
+    public void remove(MessageListener listener) {
+        listeners.remove(listener);
+    }
+
+    protected void listenTo(Message m, boolean isReceive) {
+        listeners.entrySet().parallelStream()
+                .filter(e -> e.getValue() == isReceive)
+                .map(e -> e.getKey())
+                .forEach(l -> l.process(m));
+    }
+
 }

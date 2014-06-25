@@ -31,7 +31,9 @@ public class Network {
             .forEach(d -> {
                 int dist = getDist(sender, d);
                 if (strength > dist) {
-                    d.receive(m.clone(strength - dist));
+                    Message m1 = m.clone();
+                    m1.setRf(strength - dist);
+                    d.receive(m1);
                 }
             });
     }

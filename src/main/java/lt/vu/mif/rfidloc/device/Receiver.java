@@ -7,7 +7,7 @@ import lt.vu.mif.rfidloc.message.Operation;
 import lt.vu.mif.rfidloc.network.Network;
 
 @ToString(callSuper = true)
-public class Receiver extends Transciever {
+public class Receiver extends Transceiver {
     
     private static final int PATH_COUNT_DOWN = 10;
     
@@ -24,6 +24,8 @@ public class Receiver extends Transciever {
         switch (m.getOp()) {
             case TRACK:
                 if (pathCounter.get() > 0) {
+                    listenTo(m, true);
+                    m = m.clone();
                     if (m.getTarget() == 0) {
                         m.setRec(getId());
                         m.setRecrf(m.getRf());
@@ -36,6 +38,7 @@ public class Receiver extends Transciever {
                 break;
             case PATH:
                 if (pathCounter.get() == 0 || pathLen.get() >= m.getStrength()) {
+                    listenTo(m, true);
                     pathLen.set(m.getStrength());
                     pathTarget.set(m.getSource());
                     pathCounter.set(PATH_COUNT_DOWN);

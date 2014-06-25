@@ -6,9 +6,13 @@ import lt.vu.mif.rfidloc.message.Message;
 import lt.vu.mif.rfidloc.message.Operation;
 import lt.vu.mif.rfidloc.network.Network;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 @Log4j
 @ToString(callSuper = true)
-public class Controller extends Transciever {
+public class Controller extends Transceiver {
 
     public Controller(Network net, int x, int y) {
         super(net, x, y);
@@ -16,10 +20,8 @@ public class Controller extends Transciever {
 
     @Override
     protected void processMessage(Message m) {
-        if (m.getOp() == Operation.TRACK) {
-            if (m.getTarget() == 0 || m.getTarget() == getId()) {
-                log.info(m);
-            }
+        if (m.getTarget() == 0 || m.getTarget() == getId()) {
+            listenTo(m, Boolean.TRUE);
         }
     }
     

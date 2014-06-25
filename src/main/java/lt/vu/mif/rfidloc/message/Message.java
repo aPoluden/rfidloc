@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @RequiredArgsConstructor
 @ToString
-public class Message {
+public class Message implements Cloneable {
 
     private static long IDSEQ = 0;
     
@@ -38,11 +38,16 @@ public class Message {
     private int recrf = 0;
     
     // Received signal strength
+    @Setter
     private int rf = 0;
-    
-    public Message clone(int rf) {
-        this.rf = rf;
-        return this;
+
+    @Override
+    public Message clone() {
+        try {
+            return (Message) super.clone();
+        } catch (CloneNotSupportedException ex) {
+            return null;
+        }
     }
     
 }

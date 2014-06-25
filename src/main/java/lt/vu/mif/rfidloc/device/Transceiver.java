@@ -7,14 +7,14 @@ import static lt.vu.mif.rfidloc.device.Device.wait;
 import lt.vu.mif.rfidloc.message.Message;
 import lt.vu.mif.rfidloc.network.Network;
 
-public abstract class Transciever extends Device {
+public abstract class Transceiver extends Device {
 
     private static final int SEND_POWER = 255;
     
     private final Random rand = new Random();
     protected final BlockingQueue<Message> sending = new LinkedBlockingQueue<>();
     
-    public Transciever(Network net, int x, int y) {
+    public Transceiver(Network net, int x, int y) {
         super(net, x, y);
     }
 
