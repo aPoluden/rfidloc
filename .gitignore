@@ -1,2 +1,9 @@
 .idea
 target
+src/firmware/*/*.bin
+src/firmware/*/*.elf
+src/firmware/*/*.map
+src/firmware/*/*.asm
+src/firmware/*/*/*.o
+src/firmware/*/*/*/*.o
+src/firmware/*/*/*/*/*.o
