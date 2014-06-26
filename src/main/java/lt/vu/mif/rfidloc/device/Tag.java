@@ -40,7 +40,7 @@ public class Tag extends Device {
                     Message m = new Message(Operation.TRACK, si + 1, getId());
                     send(m, strengthList.get(si));
                     
-                    wait(50 * rand.nextInt(25));
+                    wait(100 * (5 + rand.nextInt(5)));
 
                 }
             }

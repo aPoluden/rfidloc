@@ -50,7 +50,7 @@ public abstract class Transceiver extends Device {
                 if (m != null) {
                     sending.add(m);
                 }
-                wait(1000 * rand.nextInt(10));
+                wait(1000 * (5 + rand.nextInt(10)));
             }
         };
     }
