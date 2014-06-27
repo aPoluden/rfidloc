@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.cnd.makeproject</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/make-project/1">
+            <name>receiver</name>
+            <c-extensions>c</c-extensions>
+            <cpp-extensions/>
+            <header-extensions>h</header-extensions>
+            <sourceEncoding>UTF-8</sourceEncoding>
+            <make-dep-projects/>
+            <sourceRootList>
+                <sourceRootElem>application</sourceRootElem>
+                <sourceRootElem>config</sourceRootElem>
+                <sourceRootElem>../core/openbeacon</sourceRootElem>
+                <sourceRootElem>../core/os/boot</sourceRootElem>
+                <sourceRootElem>../core/os/core/ARM7_AT91SAM7</sourceRootElem>
+                <sourceRootElem>../core/os/core/include</sourceRootElem>
+                <sourceRootElem>../core/os/core/MemMang</sourceRootElem>
+                <sourceRootElem>../core/os/usb</sourceRootElem>
+            </sourceRootList>
+            <confList>
+                <confElem>
+                    <name>Default</name>
+                    <type>0</type>
+                </confElem>
+            </confList>
+            <formatting>
+                <project-formatting-style>false</project-formatting-style>
+            </formatting>
+        </data>
+    </configuration>
+</project>

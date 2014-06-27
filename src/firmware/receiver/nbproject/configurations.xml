@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="94">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="application" name="0">
+      <in>cmd.c</in>
+      <in>cmd.h</in>
+      <in>main.c</in>
+      <in>openbeacon.h</in>
+      <in>proto.c</in>
+      <in>proto.h</in>
+      <in>xxtea.c</in>
+      <in>xxtea.h</in>
+    </df>
+    <df root="../core/os/core/ARM7_AT91SAM7" name="4">
+      <in>AT91SAM7.h</in>
+      <in>AT91SAM7S.h</in>
+      <in>AT91SAM7SE512.h</in>
+      <in>AT91SAM7X.h</in>
+      <in>lib_AT91SAM7.c</in>
+      <in>lib_AT91SAM7.h</in>
+      <in>lib_AT91SAM7X.h</in>
+    </df>
+    <df root="../core/os/boot" name="3">
+      <in>Cstartup_SAM7.c</in>
+      <in>boot.s</in>
+    </df>
+    <df root="config" name="1">
+      <in>FreeRTOSConfig.h</in>
+      <in>board.h</in>
+      <in>descriptors.h</in>
+    </df>
+    <df root="../core/os/core/include" name="5">
+      <in>FreeRTOS.h</in>
+      <in>StackMacros.h</in>
+      <in>croutine.h</in>
+      <in>list.h</in>
+      <in>mpu_wrappers.h</in>
+      <in>portable.h</in>
+      <in>projdefs.h</in>
+      <in>queue.h</in>
+      <in>semphr.h</in>
+      <in>task.h</in>
+    </df>
+    <df root="../core/os/core/MemMang" name="6">
+      <in>heap_1.c</in>
+      <in>heap_2.c</in>
+      <in>heap_3.c</in>
+    </df>
+    <df root="../core/openbeacon" name="2">
+      <df name="nRF24L01">
+        <in>nRF_API.c</in>
+        <in>nRF_API.h</in>
+        <in>nRF_CMD.c</in>
+        <in>nRF_CMD.h</in>
+        <in>nRF_HW.h</in>
+      </df>
+      <in>beacontypes.h</in>
+      <in>crc32.c</in>
+      <in>crc32.h</in>
+      <in>dbgu.c</in>
+      <in>dbgu.h</in>
+      <in>debug_printf.c</in>
+      <in>debug_printf.h</in>
+      <in>env.c</in>
+      <in>env.h</in>
+      <in>led.c</in>
+      <in>led.h</in>
+      <in>rnd.c</in>
+      <in>rnd.h</in>
+      <in>sort.c</in>
+      <in>sort.h</in>
+      <in>syscalls.c</in>
+    </df>
+    <df root="../core/os/usb" name="7">
+      <in>USB-CDC.c</in>
+      <in>USB-CDC.h</in>
+      <in>USBIsr.c</in>
+      <in>usb.h</in>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>application</Elem>
+    <Elem>config</Elem>
+    <Elem>../core/openbeacon</Elem>
+    <Elem>../core/os/boot</Elem>
+    <Elem>../core/os/core/ARM7_AT91SAM7</Elem>
+    <Elem>../core/os/core/include</Elem>
+    <Elem>../core/os/core/MemMang</Elem>
+    <Elem>../core/os/usb</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <cTool>
+            <incDir>
+              <pElem>../core/os/core/include</pElem>
+              <pElem>../core/os/core/ARM7_AT91SAM7</pElem>
+              <pElem>../core/os/core</pElem>
+              <pElem>../core/os/usb</pElem>
+              <pElem>../core/openbeacon/nRF24L01</pElem>
+              <pElem>../core/openbeacon</pElem>
+              <pElem>config</pElem>
+              <pElem>application</pElem>
+              <pElem>../core/os/core/ARM7_AT91SAM7</pElem>
+            </incDir>
+          </cTool>
+        </makeTool>
+      </makefileType>
+      <item path="../core/openbeacon/beacontypes.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/crc32.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/crc32.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/dbgu.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/dbgu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/debug_printf.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/debug_printf.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/env.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/env.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/led.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/led.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/nRF24L01/nRF_API.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../core/openbeacon/nRF24L01/nRF_API.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../core/openbeacon/nRF24L01/nRF_CMD.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../core/openbeacon/nRF24L01/nRF_CMD.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../core/openbeacon/nRF24L01/nRF_HW.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../core/openbeacon/rnd.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/rnd.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/sort.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/sort.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/openbeacon/syscalls.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/os/boot/Cstartup_SAM7.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/os/boot/boot.s" ex="false" tool="4" flavor2="0">
+      </item>
+      <item path="../core/os/core/ARM7_AT91SAM7/AT91SAM7.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../core/os/core/ARM7_AT91SAM7/AT91SAM7S.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../core/os/core/ARM7_AT91SAM7/AT91SAM7SE512.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../core/os/core/ARM7_AT91SAM7/AT91SAM7X.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../core/os/core/ARM7_AT91SAM7/lib_AT91SAM7.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="../core/os/core/ARM7_AT91SAM7/lib_AT91SAM7.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../core/os/core/ARM7_AT91SAM7/lib_AT91SAM7X.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../core/os/core/MemMang/heap_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/os/core/MemMang/heap_2.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/os/core/MemMang/heap_3.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/os/core/include/FreeRTOS.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/os/core/include/StackMacros.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../core/os/core/include/croutine.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/os/core/include/list.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/os/core/include/mpu_wrappers.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="../core/os/core/include/portable.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/os/core/include/projdefs.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/os/core/include/queue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/os/core/include/semphr.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/os/core/include/task.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/os/usb/USB-CDC.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/os/usb/USB-CDC.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="../core/os/usb/USBIsr.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="../core/os/usb/usb.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="application/cmd.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="application/cmd.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="application/main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="application/openbeacon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="application/proto.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="application/proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="application/xxtea.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="application/xxtea.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="config/FreeRTOSConfig.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="config/board.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="config/descriptors.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

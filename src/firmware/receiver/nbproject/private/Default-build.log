@@ -1,0 +1,3 @@
+arm-none-eabi-gcc -c -D __AT91SAM7S128__ -D __AT91SAM7S__ -D PROGRAM_VERSION=\"'unknown'\" -Iconfig -I../core/openbeacon -I../core/openbeacon/nRF24L01 -I../core/os/core/include -I../core/os/usb -I../core/os/core/ARM7_AT91SAM7 -Wall -Werror -Wextra -Wno-multichar -Wstrict-prototypes -Wno-strict-aliasing -D SAM7_GCC -mcpu=arm7tdmi -Tconfig/atmel-rom.ld -g -O2 -fomit-frame-pointer -ffunction-sections -fdata-sections -Iapplication application/main.c -o application/main.o
+make: arm-none-eabi-gcc: Command not found
+make: *** [application/main.o] Error 127

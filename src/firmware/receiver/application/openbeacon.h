@@ -1,31 +1,3 @@
-/*
-    This file is part of the SocioPatterns firmware
-    Copyright (C) 2008-2009 Istituto per l'Interscambio Scientifico I.S.I.
-    You can contact us by email (isi@isi.it) or write to:
-    ISI Foundation, Viale S. Severo 65, 10133 Torino, Italy. 
-
-    This program was written by Ciro Cattuto <ciro.cattuto@gmail.com>
-
-    This program is based on:
-    OpenBeacon.org - OnAir protocol specification and definition
-    Copyright 2006 Milosch Meriac <meriac@openbeacon.de>
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; version 2.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write to the Free Software Foundation, Inc.,
-    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-    This file was modified on: April 1st, 2009
-*/
-
 #ifndef __OPENBEACON_H__
 #define __OPENBEACON_H__
 
@@ -41,7 +13,7 @@
 #define RFBPROTO_PROXREPORT      69
 #define RFBPROTO_PROXREPORT_EXT  70
 
-#define PROX_MAX 4
+#define PROX_MAX                 4
 
 #define RFBFLAGS_ACK			0x01
 #define RFBFLAGS_SENSOR			0x02
@@ -57,6 +29,7 @@
 #define READER_CMD_RESET_FACTORY	0x03
 #define READER_CMD_RESET_WIFI		0x04
 #define READER_CMD_SET_OID		0x05
+
 /* RFBPROTO_READER_COMMAND related results */
 #define READ_RES__OK			0x00
 #define READ_RES__DENIED		0x01
@@ -64,58 +37,65 @@
 
 #define PACKED  __attribute__((__packed__))
 
-
-typedef struct
-{
-	u_int8_t strength;
-	u_int16_t oid_last_seen;
-	u_int16_t powerup_count;
-	u_int8_t reserved;
-	u_int32_t seq;
+typedef struct {
+    
+    u_int8_t strength;
+    u_int16_t oid_last_seen;
+    u_int16_t powerup_count;
+    u_int8_t reserved;
+    u_int32_t seq;
+    
 } PACKED TBeaconTracker;
 
-typedef struct
-{
-	u_int16_t oid_prox[PROX_MAX];
-	u_int16_t seq;
+typedef struct {
+    
+    u_int16_t oid_prox[PROX_MAX];
+    u_int16_t seq;
+    
 } PACKED TBeaconProx;
 
-typedef struct
-{
-	u_int8_t opcode, res;
-	u_int32_t data[2];
+
+typedef struct {
+    
+    u_int8_t opcode, res;
+    u_int32_t data[2];
+    
 } PACKED TBeaconReaderCommand;
 
-typedef struct
-{
-	u_int8_t opcode, strength;
-	u_int32_t uptime, ip;
+typedef struct {
+    
+    u_int8_t opcode, strength;
+    u_int32_t uptime, ip;
+    
 } PACKED TBeaconReaderAnnounce;
 
-typedef union
-{
-	TBeaconProx prox;
-	TBeaconTracker tracker;
-	TBeaconReaderCommand reader_command;
-	TBeaconReaderAnnounce reader_announce;
+typedef union {
+    
+    TBeaconProx prox;
+    TBeaconTracker tracker;
+    TBeaconReaderCommand reader_command;
+    TBeaconReaderAnnounce reader_announce;
+    
 } PACKED TBeaconPayload;
 
-typedef struct
-{
-	u_int8_t proto;
-	u_int16_t oid;
-	u_int8_t flags;
+typedef struct {
+    
+    u_int8_t proto;
+    u_int16_t oid;
+    u_int8_t flags;
 
-	TBeaconPayload p;
+    TBeaconPayload p;
 
-	u_int16_t crc;
+    u_int16_t crc;
+    
 } PACKED TBeaconWrapper;
 
-typedef union
-{
-	TBeaconWrapper pkt;
-	u_int32_t block[XXTEA_BLOCK_COUNT];
-	u_int8_t byte[XXTEA_BLOCK_COUNT * 4];
+typedef union {
+    
+    TBeaconWrapper pkt;
+    u_int32_t block[XXTEA_BLOCK_COUNT];
+    u_int8_t byte[XXTEA_BLOCK_COUNT * 4];
+    
 } PACKED TBeaconEnvelope;
 
 #endif/*__OPENBEACON_H__*/
