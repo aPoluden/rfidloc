@@ -30,7 +30,7 @@ public class Network {
         devices.stream()
             .filter(d -> !sender.equals(d))
             .forEach(d -> {
-                int dist = getDist(sender, d);
+                int dist = sender.getCoords().getDistTo(d.getCoords());
                 if (strength > dist) {
                     Message m1 = m.clone();
                     m1.setRf(strength - dist);
@@ -39,11 +39,4 @@ public class Network {
             });
     }
 
-    public static int getDist(Device d1, Device d2) {
-        int dx = d1.getX() - d2.getX();
-        int dy = d1.getY() - d2.getY();
-        Double dist = Math.sqrt(dx * dx + dy * dy);
-        return dist.intValue();
-    }
-    
 }

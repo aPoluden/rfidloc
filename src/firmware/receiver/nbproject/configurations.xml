@@ -11,7 +11,7 @@
       <in>xxtea.c</in>
       <in>xxtea.h</in>
     </df>
-    <df root="../core/os/core/ARM7_AT91SAM7" name="4">
+    <df root="../core/os/core/ARM7_AT91SAM7" name="1">
       <in>AT91SAM7.h</in>
       <in>AT91SAM7S.h</in>
       <in>AT91SAM7SE512.h</in>
@@ -20,16 +20,16 @@
       <in>lib_AT91SAM7.h</in>
       <in>lib_AT91SAM7X.h</in>
     </df>
-    <df root="../core/os/boot" name="3">
+    <df root="../core/os/boot" name="2">
       <in>Cstartup_SAM7.c</in>
       <in>boot.s</in>
     </df>
-    <df root="config" name="1">
+    <df root="config" name="3">
       <in>FreeRTOSConfig.h</in>
       <in>board.h</in>
       <in>descriptors.h</in>
     </df>
-    <df root="../core/os/core/include" name="5">
+    <df root="../core/os/core/include" name="4">
       <in>FreeRTOS.h</in>
       <in>StackMacros.h</in>
       <in>croutine.h</in>
@@ -41,12 +41,12 @@
       <in>semphr.h</in>
       <in>task.h</in>
     </df>
-    <df root="../core/os/core/MemMang" name="6">
+    <df root="../core/os/core/MemMang" name="5">
       <in>heap_1.c</in>
       <in>heap_2.c</in>
       <in>heap_3.c</in>
     </df>
-    <df root="../core/openbeacon" name="2">
+    <df root="../core/openbeacon" name="6">
       <df name="nRF24L01">
         <in>nRF_API.c</in>
         <in>nRF_API.h</in>
@@ -273,6 +273,10 @@
       <item path="application/proto.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="application/proto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="application/proto_1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="application/proto_1.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="application/xxtea.c" ex="false" tool="0" flavor2="0">
       </item>

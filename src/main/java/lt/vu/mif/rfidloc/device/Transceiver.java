@@ -14,8 +14,8 @@ public abstract class Transceiver extends Device {
     private final Random rand = new Random();
     protected final BlockingQueue<Message> sending = new LinkedBlockingQueue<>();
     
-    public Transceiver(Network net, int x, int y) {
-        super(net, x, y);
+    public Transceiver(Network net, Coords coords) {
+        super(net, coords);
     }
 
     protected abstract void processMessage(Message m);

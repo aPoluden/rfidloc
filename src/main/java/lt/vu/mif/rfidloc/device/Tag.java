@@ -20,9 +20,13 @@ public class Tag extends Device {
     }
     
     private final Random rand = new Random();
-    
-    public Tag(Network net, int x, int y) {
-        super(net, x, y);
+
+    public Tag(Network net) {
+        this(net, Coords.build(0, 0, 0));
+    }
+
+    public Tag(Network net, Coords coords) {
+        super(net, coords);
     }
     
     @Override

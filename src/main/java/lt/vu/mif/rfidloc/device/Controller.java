@@ -15,8 +15,12 @@ import java.util.Set;
 @ToString(callSuper = true)
 public class Controller extends Transceiver {
 
-    public Controller(Network net, int x, int y) {
-        super(net, x, y);
+    public Controller(Network net) {
+        this(net, Coords.build(0, 0, 0));
+    }
+
+    public Controller(Network net, Coords coords) {
+        super(net, coords);
     }
 
     @Override

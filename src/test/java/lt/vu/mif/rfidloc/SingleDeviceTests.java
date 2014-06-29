@@ -1,6 +1,7 @@
 package lt.vu.mif.rfidloc;
 
 import lt.vu.mif.rfidloc.device.Controller;
+import lt.vu.mif.rfidloc.device.Coords;
 import lt.vu.mif.rfidloc.device.Receiver;
 import lt.vu.mif.rfidloc.device.Tag;
 import lt.vu.mif.rfidloc.message.Operation;
@@ -21,7 +22,7 @@ public class SingleDeviceTests extends TestBase {
     public void singleTagTest() {
         Network net = new Network(1);
         
-        Tag t = new Tag(net, 0, 0);
+        Tag t = new Tag(net);
         t.add((m, receiving) -> {
 
             if (receiving) {
@@ -45,7 +46,7 @@ public class SingleDeviceTests extends TestBase {
     public void singleControllerTest() {
         Network net = new Network(1);
 
-        Controller c = new Controller(net, 0, 0);
+        Controller c = new Controller(net);
         c.add((m, receiving) -> {
 
             if (receiving) {
@@ -70,7 +71,7 @@ public class SingleDeviceTests extends TestBase {
     public void singleReceiverTest() {
         Network net = new Network(1);
 
-        Receiver r = new Receiver(net, 0, 0);
+        Receiver r = new Receiver(net);
         r.add((m, receiving) -> {
 
             fail("Receiver should not be sending nor receiving anything!");

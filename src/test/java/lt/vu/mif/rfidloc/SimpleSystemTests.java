@@ -1,6 +1,7 @@
 package lt.vu.mif.rfidloc;
 
 import lt.vu.mif.rfidloc.device.Controller;
+import lt.vu.mif.rfidloc.device.Coords;
 import lt.vu.mif.rfidloc.device.Receiver;
 import lt.vu.mif.rfidloc.device.Tag;
 import lt.vu.mif.rfidloc.message.Operation;
@@ -25,9 +26,9 @@ public class SimpleSystemTests extends TestBase {
         BooleanHolder t_received = new BooleanHolder();
         BooleanHolder r_received = new BooleanHolder();
 
-        Tag t = new Tag(net, 50, 50);
-        Receiver r = new Receiver(net, 100, 100);
-        Controller c = new Controller(net, 0, 0);
+        Tag t = new Tag(net, Coords.build(50, 50, 50));
+        Receiver r = new Receiver(net, Coords.build(100, 100, 100));
+        Controller c = new Controller(net, Coords.build(0, 0, 0));
 
         c.add((m, receiving) -> {
 
