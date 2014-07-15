@@ -2,7 +2,6 @@ package lt.vu.mif.rfidloc.device;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.log4j.Log4j;
 import lt.vu.mif.rfidloc.listener.MessageListener;
@@ -32,24 +31,18 @@ public abstract class Device {
     
     @Getter
     private final int id = ++ID_SEQ;
-    
+
     @Getter
-    @Setter
-    private int x;
-    
-    @Getter
-    @Setter
-    private int y;
-    
+    private final Coords coords;
+
     private final AtomicBoolean running = new AtomicBoolean(Boolean.FALSE);
     protected final AtomicBoolean receiving = new AtomicBoolean(Boolean.TRUE);
     protected final BlockingQueue<Message> messages = new LinkedBlockingQueue<>();
     private ExecutorService service;
     
-    public Device(Network net, int x, int y) {
+    public Device(Network net, Coords coords) {
         this.net = net;
-        this.x = x;
-        this.y = y;
+        this.coords = coords;
         net.add(this);
         if (log.isDebugEnabled()) {
             log.debug(String.format("Constructed: %s", this));
@@ -119,16 +112,6 @@ public abstract class Device {
             this.stop();
             this.start();
         }
-    }
-    
-    public void moveTo(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public void move(int dx, int dy) {
-        this.x += x;
-        this.y += y;
     }
     
     protected static void wait(int ms) {

@@ -1,15 +1,16 @@
 package lt.vu.mif.rfidloc;
 
 import lt.vu.mif.rfidloc.device.Controller;
+import lt.vu.mif.rfidloc.device.Coords;
 import lt.vu.mif.rfidloc.device.Receiver;
-import lt.vu.mif.rfidloc.device.Tag;
 import lt.vu.mif.rfidloc.message.Operation;
 import lt.vu.mif.rfidloc.network.Network;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(JUnit4.class)
 public class ReceiversSystemTests extends TestBase {
@@ -24,9 +25,9 @@ public class ReceiversSystemTests extends TestBase {
         BooleanHolder r2_setup = new BooleanHolder();
         BooleanHolder r3_setup = new BooleanHolder();
 
-        Controller c = new Controller(net, 0, 0);
-        Receiver r1 = new Receiver(net, 150, 150);
-        Receiver r2 = new Receiver(net, 300, 300);
+        Controller c = new Controller(net, Coords.build(0, 0, 0));
+        Receiver r1 = new Receiver(net, Coords.build(100, 100, 100));
+        Receiver r2 = new Receiver(net, Coords.build(200, 200, 200));
 
         r1.add((m, receiving) -> {
             if (!receiving) {
@@ -71,11 +72,11 @@ public class ReceiversSystemTests extends TestBase {
         BooleanHolder r4_setup = new BooleanHolder();
         BooleanHolder r5_setup = new BooleanHolder();
 
-        Controller c = new Controller(net, 0, 0);
-        Receiver r1 = new Receiver(net, 150, 150);
-        Receiver r2 = new Receiver(net, 300, 300);
-        Receiver r3 = new Receiver(net, 450, 450);
-        Receiver r4 = new Receiver(net, 600, 600);
+        Controller c = new Controller(net, Coords.build(0, 0, 0));
+        Receiver r1 = new Receiver(net, Coords.build(100, 100, 100));
+        Receiver r2 = new Receiver(net, Coords.build(200, 200, 200));
+        Receiver r3 = new Receiver(net, Coords.build(300, 300, 300));
+        Receiver r4 = new Receiver(net, Coords.build(400, 400, 400));
 
         r1.add((m, receiving) -> {
             if (!receiving) {
@@ -139,11 +140,11 @@ public class ReceiversSystemTests extends TestBase {
     public void secondControllerTest() {
         Network net = new Network(1);
 
-        Controller c1 = new Controller(net, 0, 0);
-        Receiver r1 = new Receiver(net, 150, 150);
-        Receiver r2 = new Receiver(net, 300, 300);
-        Receiver r3 = new Receiver(net, 450, 450);
-        Receiver r4 = new Receiver(net, 600, 600);
+        Controller c1 = new Controller(net, Coords.build(0, 0, 0));
+        Receiver r1 = new Receiver(net, Coords.build(100, 100, 100));
+        Receiver r2 = new Receiver(net, Coords.build(200, 200, 200));
+        Receiver r3 = new Receiver(net, Coords.build(300, 300, 300));
+        Receiver r4 = new Receiver(net, Coords.build(400, 400, 400));
 
         c1.start();
         r1.start();
@@ -161,7 +162,7 @@ public class ReceiversSystemTests extends TestBase {
 
         r4.clearMessageListeners();
 
-        Controller c2 = new Controller(net, 750, 750);
+        Controller c2 = new Controller(net, Coords.build(500, 500, 500));
         c2.start();
 
         wait(15);

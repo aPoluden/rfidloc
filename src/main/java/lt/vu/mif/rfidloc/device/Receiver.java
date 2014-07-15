@@ -15,9 +15,13 @@ public class Receiver extends Transceiver {
     private final AtomicInteger pathLen = new AtomicInteger(0);
     private final AtomicInteger pathTarget = new AtomicInteger(0);
     private final AtomicInteger pathCounter = new AtomicInteger(0);
-    
-    public Receiver(Network net, int x, int y) {
-        super(net, x, y);
+
+    public Receiver(Network net) {
+        this(net, Coords.build(0, 0, 0));
+    }
+
+    public Receiver(Network net, Coords coords) {
+        super(net, coords);
     }
     
     @Override

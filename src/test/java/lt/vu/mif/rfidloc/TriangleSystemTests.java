@@ -1,6 +1,7 @@
 package lt.vu.mif.rfidloc;
 
 import lt.vu.mif.rfidloc.device.Controller;
+import lt.vu.mif.rfidloc.device.Coords;
 import lt.vu.mif.rfidloc.device.Receiver;
 import lt.vu.mif.rfidloc.device.Tag;
 import lt.vu.mif.rfidloc.listener.LocationListener;
@@ -28,11 +29,11 @@ public class TriangleSystemTests extends TestBase {
         BooleanHolder r2_data = new BooleanHolder();
         BooleanHolder r3_data = new BooleanHolder();
 
-        Controller c = new Controller(net, 0, 0);
-        Receiver r1 = new Receiver(net, 150, 150);
-        Receiver r2 = new Receiver(net, 150, 300);
-        Receiver r3 = new Receiver(net, 300, 150);
-        Tag t = new Tag(net, 225, 225);
+        Controller c = new Controller(net, Coords.build(0, 0, 0));
+        Receiver r1 = new Receiver(net, Coords.build(150, 150, 0));
+        Receiver r2 = new Receiver(net, Coords.build(150, 300, 0));
+        Receiver r3 = new Receiver(net, Coords.build(300, 150, 0));
+        Tag t = new Tag(net, Coords.build(225, 225, 0));
 
         c.add((tag, rec, strength, rf) -> {
             assertEquals(t.getId(), tag);

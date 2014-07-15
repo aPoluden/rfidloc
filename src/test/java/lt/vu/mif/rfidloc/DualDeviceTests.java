@@ -22,10 +22,10 @@ public class DualDeviceTests extends TestBase {
     public void singleTagReceiverTest() {
         Network net = new Network(1);
 
-        Tag t = new Tag(net, 0, 0);
+        Tag t = new Tag(net);
         t.start();
 
-        Receiver r = new Receiver(net, 0, 0);
+        Receiver r = new Receiver(net);
         r.add((m, receiving) -> {
 
             fail("Receiver should not be sending nor receiving anything here!");
@@ -44,11 +44,11 @@ public class DualDeviceTests extends TestBase {
     public void singleTagControllerTest() {
         Network net = new Network(1);
 
-        Tag t = new Tag(net, 0, 0);
+        Tag t = new Tag(net);
         t.start();
 
         BooleanHolder received = new BooleanHolder();
-        Controller c = new Controller(net, 0, 0);
+        Controller c = new Controller(net);
         c.add((m, receiving) -> {
 
             if (receiving) {
@@ -84,7 +84,7 @@ public class DualDeviceTests extends TestBase {
     public void singleReceiverControllerTest() {
         Network net = new Network(1);
 
-        Controller c = new Controller(net, 0, 0);
+        Controller c = new Controller(net);
         c.add((m, receiving) -> {
 
             if (receiving) {
@@ -102,7 +102,7 @@ public class DualDeviceTests extends TestBase {
         BooleanHolder received = new BooleanHolder();
         BooleanHolder sent = new BooleanHolder();
 
-        Receiver r = new Receiver(net, 0, 0);
+        Receiver r = new Receiver(net);
         r.add((m, receiving) -> {
 
             if (receiving) {
@@ -125,7 +125,7 @@ public class DualDeviceTests extends TestBase {
         });
         r.start();
 
-        wait(10);
+        wait(20);
 
         assertTrue("Receiver has not received messages!", received.get());
         assertTrue("Receiver has not sent messages!", sent.get());
