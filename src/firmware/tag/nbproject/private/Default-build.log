@@ -1,0 +1,17 @@
+/usr/hitech/picc/9.83/bin/picc -q --MODE= --outdir=obj --chip=16LF1824 --codeoffset=0 --warn=0 --errors=1- --char=signed --double=24 --pass1 -c src/main.c
+/usr/hitech/picc/9.83/bin/picc -q --MODE= --outdir=obj --chip=16LF1824 --codeoffset=0 --warn=0 --errors=1- --char=signed --double=24 --pass1 -c src/timer.c
+/usr/hitech/picc/9.83/bin/picc -q --MODE= --outdir=obj --chip=16LF1824 --codeoffset=0 --warn=0 --errors=1- --char=signed --double=24 --pass1 -c src/nRF_CMD.c
+/usr/hitech/picc/9.83/bin/picc -q --MODE= --outdir=obj --chip=16LF1824 --codeoffset=0 --warn=0 --errors=1- --char=signed --double=24 --summary=mem,file --asmlist --output=+intel --output=+mcof --runtime=+init --runtime=+osccal --runtime=+clear --runtime=+clib --runtime=+keep -m -Oobj/openbeacon-tagPRO.hex obj/main.p1 obj/timer.p1 obj/nRF_CMD.p1
+
+Memory Summary:
+    Program space        used   B81h (  2945) of  1000h words   ( 71.9%)
+    Data space           used    87h (   135) of   100h bytes   ( 52.7%)
+    EEPROM space         used     8h (     8) of   100h bytes   (  3.1%)
+    Configuration bits   used     2h (     2) of     2h words   (100.0%)
+    ID Location space    used     0h (     0) of     4h bytes   (  0.0%)
+
+php ./create_counted_firmware.php
+
+
+OpenBeacon tag ID set to '111'
+
